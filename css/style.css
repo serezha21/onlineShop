@@ -1,0 +1,699 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+.clear:before,
+.clear:after {
+    display: table;
+    content: '';
+}
+
+.clear:after {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    color: #425058;
+}
+
+a.active, a:hover {
+    color: #4ccfe1;
+}
+
+button {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    color: #425058;
+    background-color: #f7f7f7;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#view-cart {
+    width: 100%;
+    height: 2180px;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+}
+
+#view-cart .cart {
+    position: absolute;
+    top: 10px;
+    min-height: 600px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+}
+
+#view-cart .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 300%;
+    color: #9c9fa4;
+}
+
+#view-cart .content {
+    padding: 35px 40px;
+}
+
+#view-cart .remove {
+    font-size: 200%;
+    cursor: pointer;
+    float: left;
+}
+
+#view-cart .remove:hover {
+    color: red;
+}
+
+#view-cart h1 {
+    color: #9c9fa4;
+    text-align: center;
+}
+
+#view-cart h2 {
+
+}
+
+#view-cart .close:hover {
+    color: red;
+}
+
+#view-cart img {
+    max-width: 180px;
+    padding: 0 10px;
+    float: left;
+}
+
+#view-cart .info {
+    float: left;
+    width: 700px;
+}
+
+#view-cart .title {
+    margin-bottom: 75px;
+}
+
+#view-cart .title span {
+    float: right;
+}
+
+#view-cart .price {
+    float: left;
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: #fff3b5;
+    padding: 6px 5px;
+}
+
+#view-cart .product {
+    float: left;
+    margin-bottom: 30px;
+}
+
+#view-cart .prices {
+    font-size: 200%;
+}
+
+#view-cart .prices i {
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+#view-cart input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid black;
+    position: relative;
+    top: -5px;
+}
+
+#view-cart .quantity {
+    float: right;
+    margin-right: 20px;
+}
+
+#view-cart .allPrice {
+    float: right;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header a {
+    font-weight: bold;
+}
+
+header i.fa-search {
+    cursor: pointer;
+}
+
+header i.fa-search:hover {
+    color: #4ccfe1;
+}
+
+#header-top {
+    padding: 35px 0;
+}
+
+header #header-top img {
+    width: 120px;
+}
+
+header #header-left, header #header-right {
+    width: calc((100% - 120px) / 2);
+}
+
+header #header-left {
+    float: left;
+    padding: 6px 0;
+}
+
+header #header-left nav {
+    display: inline-block;
+}
+
+header #header-right {
+    float: right;
+    text-align: right;
+}
+
+footer .phone, header #header-right .phone {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #4ccfe1;
+    text-align: center;
+    color: white;
+    font-size: 80%;
+}
+
+footer .fa-phone, header #cart, header #header-right .fa-phone, header #header-right .number {
+    vertical-align: sub;
+}
+
+header #header-right .number, header #header-right .fa-angle-down {
+    margin-left: 10px;
+}
+
+header #cart {
+    display: inline-block;
+    width: 22px;
+    height: 35px;
+    background: url(../img/icon-cart.png) no-repeat;
+    color: #4ccfe1;
+    text-align: center;
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 90%;
+    margin-left: 35px;
+    cursor: pointer;
+}
+
+header #header-subcategories {
+    text-align: center;
+    background-color: #425058;
+    padding: 5px 0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+header #header-subcategories li {
+    padding: 5px 0;
+}
+
+header #header-subcategories a {
+    color: #c4c8ca;
+}
+
+header #header-subcategories .active, header #header-subcategories a:hover {
+    color: #4ccfe1;
+}
+
+section {
+    margin-bottom: 50px!important;
+}
+
+section .cat {
+    display: inline-block;
+    width: calc((100% - 11px) / 3);
+    height: 333px;
+    background-color: #e5e2de;
+    border-radius: 10px;
+    margin-right: 5px;
+    float: left;
+    margin-top: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+section .cat:nth-of-type(3n) {
+    margin-right: 0;
+}
+
+section .cat p {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    margin: 30px 0;
+    width: 100%;
+    font-size: 180%;
+}
+
+section .cat img {
+    height: 70%;
+    max-height: 240px;
+    max-width: 300px;
+}
+
+section .cat span {
+    position: absolute;
+    bottom: 25%;
+    text-align: center;
+    width: 100%;
+}
+
+section #categories {
+    float: left;
+    width: 150px;
+    margin-right: 50px;
+    position: relative;
+}
+
+section #categories ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+section #categories a {
+    border-bottom: 1px solid #889095;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-top: 7px;
+}
+
+section #categories a.active, section #categories a:hover {
+    background-color: #f64873;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 5px;
+    margin-bottom: 3px;
+    position: relative;
+    left: -10px;
+}
+
+section #content {
+    float: left;
+    width: 800px;
+}
+
+section #content img {
+    cursor: pointer;
+}
+
+section #content .product {
+    position: relative;
+    float: left;
+    background-color: white;
+    width: 188px;
+    height: 300px;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    margin-right: 16px;
+    margin-top: 16px;
+    top: -16px;
+}
+
+section #content .product .img {
+    width: 100%;
+    text-align: center;
+    display: block;
+    height: 200px;
+    position: relative;
+}
+
+section #content .product .img img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 180px;
+    max-height: 200px;
+}
+
+section #content .product:nth-of-type(4n) {
+    margin-right: 0;
+}
+
+section #content .product .info {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    border-top: 1px solid #f0f0f0;
+    height: 100px;
+    width: 100%;
+}
+
+section #content .product .price {
+    color: black;
+    font-weight: bold;
+    width: 50%;
+    float: left;
+    position: absolute;
+    bottom: 20px;
+    margin-top: 10px;
+}
+
+section #content .product .price.stock {
+    color: #f54873;
+    font-size: 90%;
+    bottom: 10px;
+}
+
+section #content .product .price.stock span {
+    color: #bfbfbf;
+    text-decoration: line-through;
+    font-size: 90%;
+}
+
+section #content .product button {
+    float: right;
+    padding: 5px 10px;
+    background-color: #36454d;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+}
+
+section #content .product .info a {
+    font-size: 65%;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+section #content .product .info a:hover {
+    text-decoration: none;
+}
+
+section #paginations {
+    width: 54%;
+    margin: 35px auto;
+}
+
+section #paginations a {
+    border: 2px solid #ededed;
+    border-radius: 5px;
+    padding: 5px 7px;
+    font-weight: bold;
+}
+
+section #paginations .show-all {
+    float: right;
+}
+
+section #paginations .pagination {
+    display: inline-block;
+    float: left;
+}
+
+section #paginations .pagination a {
+    border-radius: 0px;
+    float: left;
+    border-right: none;
+}
+
+section #paginations .pagination a.disable, section #paginations .pagination a.disable:hover {
+    color: #cdcdcd;
+    background-color: #f7f7f7;
+    cursor: default;
+}
+
+section #paginations a:hover, section #paginations .pagination a.active {
+    color: white;
+    background-color: #f54872;
+}
+
+section #paginations .pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+section #paginations .pagination a:last-child {
+    border: 2px solid #ededed;
+}
+
+section #paginations .pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+section #photo-slider {
+    float: left;
+    width: 500px;
+    margin-right: 50px;
+}
+
+section #photo-slider span, section #photo-slider .pagination {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+section #photo-slider span {
+    height: 500px;
+    line-height: 500px;
+}
+
+section #photo-slider img.main {
+    max-width: 500px;
+    max-height: 500px;
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+section #photo-slider .pagination {
+    text-align: center;
+}
+
+section #photo-slider .pagination img {
+    float: left;
+    max-height: 50px;
+    margin: 0 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+section #product-info {
+    float: left;
+    width: 450px;
+}
+
+section #product-info .rating i {
+    color: #ffd200;
+}
+
+section #product-info .rating i:nth-of-type(5) {
+    opacity: 0.5;
+}
+
+section #product-info .rating span {
+    font-size: 90%;
+    color: #c1c1c1;
+}
+
+section #product-info .price {
+    color: black;
+    font-size: 120%;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+section #product-info .price span {
+    text-decoration: line-through;
+    color: #c1c1c1;
+    font-size: 90%;
+    font-weight: normal;
+    margin-left: 20px;
+}
+
+section #product-info .slider {
+    border-top: 1px solid #c1c1c1;
+    margin-top: 20px;
+}
+
+section #product-info .slider a.active, section #product-info .slider a:hover {
+    padding-top: 15px;
+    display: inline-block;
+    font-weight: bold;
+    border-top: 1px solid black;
+    color: black;
+}
+
+section #product-info .slider a {
+    margin-right: 10px;
+}
+
+section #product-info button {
+    border: 1px solid black;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px 7px;
+}
+
+section #product-info button.active, section #product-info button:hover {
+    border-color: #cc1f4a;
+    background-color: #cc1f4a;
+    color: #fff;
+}
+
+section #product-info button.disable, section #product-info button.disable:hover {
+    border-color: #c1c1c1;
+    color: #c1c1c1;
+    background-color: white;
+}
+
+section #product-info .memory {
+    border-top: 1px solid #c1c1c1;
+}
+
+section #product-info .order-btns {
+    margin-top: 30px;
+}
+
+section #product-info .memory span {
+    font-weight: bold;
+    margin: 10px 0;
+    display: block;
+}
+
+section .feature table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+section .feature table td {
+    padding-top: 10px;
+}
+
+section .feature table .property {
+    color: #acacac;
+}
+
+section .feature table .value {
+    font-weight: bold;
+}
+
+section .shipping p {
+    font-weight: bold;
+}
+
+footer {
+    background-color: #36454d;
+    color: #889095;
+    padding: 15px 0;
+}
+
+footer .sidebar {
+    float: left;
+    position: relative;
+    width: 333px;
+}
+
+footer .subsidebar {
+    float: left;
+    width: 50%;
+}
+
+footer h3 {
+    color: #4ccfe1;
+}
+
+footer a {
+    display: inline-block;
+    color: #889095;
+    border-bottom: 1px solid #889095;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 80%;
+}
+
+footer a:hover {
+    border: none;
+    margin-bottom: 11px;
+}
+
+footer .phone {
+    color: #36454d;
+    background-color: #889095;
+}
+
+footer .contact {
+    padding-left: 30px;
+}
+
+footer .map, footer .phone, footer .email  {
+    position: absolute;
+    left: 0;
+}
+
+footer .submap {
+    padding-left: 15px;
+    position: relative;
+}
+
+footer .subemail {
+    clear: both;
+    width: 100%;
+}
+
+noscript div {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding-top: 20%;
+    font-size: 300%;
+    z-index: 9999;
+}
