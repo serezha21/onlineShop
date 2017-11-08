@@ -1,5 +1,113 @@
 'use strict';
 
+let cart = new Cart();
+
+
+let catsStore = [];
+catsStore.push(new Category("1", "Электроника", "0", "0", null, null));
+catsStore.push(new Category("2", "Бытовая техника", "0", "0", null, null));
+catsStore.push(new Category("3", "Ноутбуки", "1", "1", "img/category/notebook.png", "bfdfff"));
+catsStore.push(new Category("4", "Комплектующие", "1", "1", "img/category/components.jpg", "e5e2de"));
+catsStore.push(new Category("5", "Планшеты", "1", "1", "img/category/tablets.png", "ffbfde"));
+catsStore.push(new Category("6", "Компьютеры", "1", "1", "img/category/computers.jpg", "bfdfff"));
+catsStore.push(new Category("7", "Смартфоны", "1", "1", "img/category/phone.png", "ffbfde"));
+catsStore.push(new Category("8", "Телевизоры", "1", "1", "img/category/tv.png", "bfdfff"));
+catsStore.push(new Category("9", "Фото и видео", "1", "1", "img/category/camera.png", "e5e2de"));
+catsStore.push(new Category("10", "Мультиварки", "1", "2", "img/category/slow-cooker.png", "bfdfff"));
+catsStore.push(new Category("11", "Кофеварки", "1", "2", "img/category/coffe.png", "ffd9b2"));
+catsStore.push(new Category("12", "Электрочайники", "1", "2", "img/category/kettle.png", "feebb1"));
+catsStore.push(new Category("13", "Мясорубки", "1", "2", "img/category/grinder.png", "e5e2de"));
+catsStore.push(new Category("14", "Миксеры", "1", "2", "img/category/mixers.png", "ffbfde"));
+catsStore.push(new Category("15", "Посуда", "1", "2", "img/category/utensils.png", "37DE6A"));
+catsStore.push(new Category("16", "Часы", "1", "1", "img/category/watch.png", "bffaff"));
+
+
+let prodsStore = [];
+//                  Смартфоны 7
+prodsStore.push(new Product("sumsung J5",3999,0,1,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("sumsung J7",4999,0,2,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Apple iPhone 6 32GB Space Gray",10999,0,3,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Apple iPhone 5s 16GB Space Gray",7777,0,4,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Apple iPhone 7 32GB Gold",17999,0,5,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Apple iPhone 7 Plus 128GB Gold",25999,0,6,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Samsung Galaxy S8 64GB Midnight Black",22999,0,7,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Samsung Galaxy A5 2017 Duos SM-A520 Black",11999,0,8,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Samsung Galaxy S8 Plus 64GB Maple Gold",26999,0,9,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Xiaomi Mi6 6/64GB Black",12499,0,10,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+//                  Ноутбуки 3
+prodsStore.push(new Product("Asus VivoBook Max X541SC",9349,0,11,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Dell Inspiron 3552",6555,0,12,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Apple A1466 MacBook Air 13",27499,0,13,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Dell XPS 13 9350",23895,0,14,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Lenovo IdeaPad 510-15IKB Gun Metal",1699,0,15,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Asus X550VX",27274,0,16,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("HP 250 G5",6999,0,17,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Dell XPS 13 9350",23999,0,18,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Dell XPS 15 9560",49999,0,19,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Acer Aspire ES1-732-P3T6 ",8415,0,20,3,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+//                  Копьютеры 6
+prodsStore.push(new Product("Everest Home 4070",30000,0,21,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("ARTLINE Gaming X39 v14",35000,0,22,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Everest Home 4070",15499,0,23,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Impression CoolPlay I6317",13499,0,24,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("ARTLINE Home H31 v01",9499,0,25,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("ARTLINE Gaming X47 v08",18999,0,26,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Dell Inspiron 3264",16800,0,27,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Acer Aspire C24-760",23399,0,28,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Acer Predator G6-710",77135,0,29,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Apple Mac Mini A1347",32699,0,30,6,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+//                  Телевизоры 8
+prodsStore.push(new Product("Toshiba 49L5660EV",11999,0,31,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Sony KDL-32WE613",10999, 9000,32,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Samsung QE49Q7FAMUXUA",69799,0,33,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Panasonic Viera TX-32DSR500",8999,0,34,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Toshiba 32S1645EV",5199,0,35,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Ergo LE32CT3500AK",6899,5900,36,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("LG 32LH590U",9999,37,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("TCL U55C7006",29999,25999,38,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Samsung UE22H5610AKXUA",67999,0,39,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("LG 55UH605V",28999,0,40,8,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+//                  Камеры 9
+prodsStore.push(new Product("Canon EOS 1300D EF-S 18-55mm",13999,0,41,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Nikon D7100 18-105mm VR Kit",27499, 25999,42,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Nikon D3300 AF-P 18-55mm VR Kit Black",11099,0,43,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Canon EOS 700D 18-55mm STM",17899,0,44,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Canon EOS 700D 18-55mm DC III",15999,0,45,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Sony Alpha 77M2 Body Black ",33999,0,46,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Nikon D5300 18-140mm VR Black Kit",22999,0,47,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Canon EOS 6D Body",36392,0,48,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Nikon D5300 + AF-P 18-55mm Black Kit",15499,0,49,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Nikon D7100 Body",22999,0,50,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+
+
+let urlDataBase = '/lib/workDataBase.php';
+
+
+$(function(){
+    /*$.post(urlDataBase, {v: localStorage.getItem('v')}, function(data){
+        
+    });*/
+    viewCatsStore(catsStore);
+});
+
+function viewCatsStore(catsStore){
+    for(let i = 0; i < catsStore.length; i++){
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*
+let main = document.querySelector("#main");
+
 document.addEventListener("DOMContentLoaded", function(){
     viewCategorys();
     document.querySelector("#cart").addEventListener("click", viewCart);
@@ -8,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-let main = document.querySelector("#main");
 
 function viewCategorys(catID = -1, prod = 0, activeCat = 0, activeSubCat = 0) {
     main.innerHTML = "";
@@ -125,8 +232,8 @@ function viewListProducts(cat) {
     let products = document.createElement("div");
     products.id = "products";
     products.classList.add("clear");
-    for(let i = 0; i < prodStore.length; i++)
-        if(prodStore[i].category == cat.id)
+    for(let i = 0; i < prodsStore.length; i++)
+        if(prodsStore[i].category == cat.id)
             viewProd(products, i);
     content.append(products);
     main.append(content);
@@ -143,10 +250,10 @@ function viewProd(products, i) {
     let span = document.createElement("span");
     span.classList.add("img");
     let img = document.createElement("img");
-    img.src = prodStore[i].urlImg;
-    img.alt = prodStore[i].name;
+    img.src = prodsStore[i].urlImg;
+    img.alt = prodsStore[i].name;
     img.addEventListener("click", function(e){
-        viewProduct(prodStore[i]);
+        viewProduct(prodsStore[i]);
         e.stopPropagation();
     });
     span.append(img);
@@ -156,10 +263,10 @@ function viewProd(products, i) {
     let info = document.createElement("div");
     info.classList.add("info");
     let a = document.createElement("a");
-    a.href = "#prod-" + prodStore[i].id;
-    a.innerHTML = prodStore[i].name;
+    a.href = "#prod-" + prodsStore[i].id;
+    a.innerHTML = prodsStore[i].name;
     a.addEventListener("click", function(e){
-        viewProduct(prodStore[i]);
+        viewProduct(prodsStore[i]);
         e.stopPropagation();
     });
     info.append(a);
@@ -167,22 +274,22 @@ function viewProd(products, i) {
     // Price
     let price = document.createElement("div");
     price.classList.add("price");
-    if(prodStore[i].newPrice == 0){
-        price.innerHTML = prodStore[i].price + " грн";
+    if(prodsStore[i].newPrice == 0){
+        price.innerHTML = prodsStore[i].price + " грн";
     }else{
         price.classList.add("stock");
         let spanPrice = document.createElement("span");
-        spanPrice.innerHTML = prodStore[i].price + " грн";
+        spanPrice.innerHTML = prodsStore[i].price + " грн";
         price.append(spanPrice);
         price.append(document.createElement("br"));
-        price.append(prodStore[i].newPrice + " грн");
+        price.append(prodsStore[i].newPrice + " грн");
     }
     info.append(price);
     // Button Купить
     let button = document.createElement("button");
     button.innerHTML = "Купить";
     button.addEventListener("click", function() {
-        addToCart(prodStore[i]);
+        addToCart(prodsStore[i]);
     });
     info.append(button);
     productDiv.append(info);
@@ -384,7 +491,7 @@ function viewCart() {
     document.querySelector("#view-cart").style.display = "block";
 }
 
-/* Product INFO Slider */
+// Product INFO Slider
 function slider(nameSlider) {
     let sliderA = document.querySelectorAll("#" + nameSlider + " a");
     for(let i = 0; i < sliderA.length; i++){
@@ -403,7 +510,7 @@ function slider(nameSlider) {
     }
 }
 
-/* Slider IMG */
+// Slider IMG
 function sliderIMG(nameSlider) {
     let listImg = document.querySelectorAll("#" + nameSlider + " .pagination img");
     for(let i = 0; i < listImg.length; i++){
@@ -411,103 +518,4 @@ function sliderIMG(nameSlider) {
             document.querySelector("#" + nameSlider + " .main").src = this.src;
         });
     }
-}
-
-
-
-
-
-// СТарье
-/*function fillProductsSection(catId = -1) {
-	for (let i = 0; i < product.length; i++) {
-		let objProduct = prodStore[i].mDesc();
-		if(catId == -1){ // || p[i].catId == catId
-			fillProduct(prodStore[i]);
-		}else if(objProduct.catID == catId) {
-			fillProduct(prodStore[i]);
-		}
-	}
-}
-
-function fillProduct(prod) {
-	let objProduct = prod.mDesc();
-	let productDiv = document.createElement("div");
-	productDiv.classList.add("product");
-	let titleH3 = document.createElement("h3");
-	titleH3.innerHTML = objProduct.title;
-	let imgURL = document.createElement("img");
-	imgURL.src = objProduct.img;
-	imgURL.alt = "product";
-	imgURL.id = objProduct.btn;
-	let buttonCart = document.createElement("button");
-	buttonCart.id = objProduct.btn;
-	buttonCart.innerHTML = "Добавить в корзину";
-	productDiv.append(titleH3); //= titleH3 + "\n" + imgURL + "\n" + buttonCart;
-	productDiv.append(imgURL);
-	productDiv.append(buttonCart);
-	document.querySelector("#main").append(productDiv);
-	imgURL.addEventListener("click", function(){
-		fillProductSection(prod);
-	});
-}
-
-function fillProductSection(prod) {
-	document.querySelector("#main").innerHTML = "";
-	let objProduct = prod.getDescription();
-	let productDiv = document.createElement("div");
-	productDiv.classList.add("productShop");
-	let titleH2 = document.createElement("h2");
-	titleH2.innerHTML = objProduct.title;
-	let priceSpan = document.createElement("span");
-	priceSpan.innerHTML = "Цена " + objProduct.price + "$";
-	let imgURL = document.createElement("img");
-	imgURL.src = objProduct.img;
-	imgURL.alt = "product";
-	let descriptionDiv = document.createElement("div");
-	descriptionDiv.innerHTML = objProduct.description;
-	let buttonCart = document.createElement("button");
-	buttonCart.id = objProduct.btn;
-	buttonCart.innerHTML = "Добавить в корзину";
-	productDiv.append(titleH2); //= titleH3 + "\n" + imgURL + "\n" + buttonCart;
-	productDiv.append(priceSpan);
-	productDiv.append(imgURL);
-	productDiv.append(descriptionDiv);
-	productDiv.append(buttonCart);
-	document.querySelector("#main").append(productDiv);
-}
-
-// получение блока для категорий
-let aside = document.getElementById('categories');
-
-//формирование списка категорий
-let list = document.createElement("ul");
-
-
-for (let i = 0; i < c.length; i++) {
-    //создание li
-    let li = document.createElement("li");
-    // создание ссылки
-    let a = document.createElement("a");
-    a.href = "#";
-    // добавление id категории к ссылке
-    //a.cat_id = c[i].id;
-    // привязка события нажатия на ссылку
-    a.addEventListener("click",function(e) {
-        document.querySelector("#main").innerHTML = "";
-        //вызов функции формирования списка товаров
-        fillProductsSection(c[i].id);
-        e.stopPropagation();
-    });
-    //помещаем название категории в ссылку
-    a.innerHTML = c[i].name;
-    //добавляем ссылку в элемент списка
-    li.append(a);
-    //добавляем элемент в список
-    list.append(li);
-
-}
-
-// добавление списка в блок
-aside.append(list);
-
-fillProductsSection();*/
+}*/
