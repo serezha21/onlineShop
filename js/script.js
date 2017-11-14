@@ -1,10 +1,8 @@
 'use strict';
 
-let cart = new Cart();
 
 
-let catsStore = [];
-catsStore.push(new Category("1", "Электроника", "0", "0", null, null));
+/*catsStore.push(new Category("1", "Электроника", "0", "0", null, null));
 catsStore.push(new Category("2", "Бытовая техника", "0", "0", null, null));
 catsStore.push(new Category("3", "Ноутбуки", "1", "1", "img/category/notebook.png", "bfdfff"));
 catsStore.push(new Category("4", "Комплектующие", "1", "1", "img/category/components.jpg", "e5e2de"));
@@ -19,11 +17,10 @@ catsStore.push(new Category("12", "Электрочайники", "1", "2", "img
 catsStore.push(new Category("13", "Мясорубки", "1", "2", "img/category/grinder.png", "e5e2de"));
 catsStore.push(new Category("14", "Миксеры", "1", "2", "img/category/mixers.png", "ffbfde"));
 catsStore.push(new Category("15", "Посуда", "1", "2", "img/category/utensils.png", "37DE6A"));
-catsStore.push(new Category("16", "Часы", "1", "1", "img/category/watch.png", "bffaff"));
+catsStore.push(new Category("16", "Часы", "1", "1", "img/category/watch.png", "bffaff"));*/
 
 
-let prodsStore = [];
-//                  Смартфоны 7
+/*//                  Смартфоны 7
 prodsStore.push(new Product("sumsung J5",3999,0,1,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
 prodsStore.push(new Product("sumsung J7",4999,0,2,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
 prodsStore.push(new Product("Apple iPhone 6 32GB Space Gray",10999,0,3,7,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
@@ -77,33 +74,130 @@ prodsStore.push(new Product("Sony Alpha 77M2 Body Black ",33999,0,46,9,"img/no-i
 prodsStore.push(new Product("Nikon D5300 18-140mm VR Black Kit",22999,0,47,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
 prodsStore.push(new Product("Canon EOS 6D Body",36392,0,48,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
 prodsStore.push(new Product("Nikon D5300 + AF-P 18-55mm Black Kit",15499,0,49,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
-prodsStore.push(new Product("Nikon D7100 Body",22999,0,50,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));
+prodsStore.push(new Product("Nikon D7100 Body",22999,0,50,9,"img/no-image.png","img/product/brend/model/","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, deserunt!"));*/
 
 
 let urlDataBase = '/lib/workDataBase.php';
-
+let cart = new Cart();
+let prodsStore = [];
+let catsStore = [];
 
 $(function(){
-    /*$.post(urlDataBase, {v: localStorage.getItem('v')}, function(data){
-        
-    });*/
-    viewCatsStore(catsStore);
+    $.post(urlDataBase, {v: localStorage.getItem('v')}, function(data){
+        if(data['error'] === undefined) {
+            let cats = data['categories'];
+            let products = data['products'];
+            for(let i = 0; i < cats.length; i++){
+                catsStore.push(new Category(cats[i]['id'], cats[i]['title'], cats[i]['nesting'], cats[i]['id_cat'], cats[i]['image'], cats[i]['bg_color']));
+            }
+            for(let i = 0; i < products.length; i++){
+                prodsStore.push(new Product(products[i]['id'],products[i]['title'],products[i]['price'],products[i]['new_price'],products[i]['id_cat'],products[i]['url_img'],products[i]['url_img_dir'],products[i]['description']));
+            }
+            console.dir(catsStore);
+            viewCatsStore();
+            console.dir(prodsStore);
+            $('#load').hide('slow');
+        }else {
+            console.log('Ошабка: ' + data.error);
+        }
+    }, 'json').fail(function(data) {
+        console.dir( data );
+    });
 });
 
-function viewCatsStore(catsStore){
+function viewCatsStore(nsID = 0, viewCatList = 1){
+    $('#header-left nav').empty();
+    $('#header-subcategories').empty();
+    $('#main').empty();
+    let ulHeadLeft = $('<ul />');
+    let ulSubCat = $('<ul />');
+    let listCat = $('<nav id="cat-list" class="clear" />');
     for(let i = 0; i < catsStore.length; i++){
-        
+        if(+catsStore[i]['nesting'] == 0) {
+            viewCat(catsStore[i], ulHeadLeft);
+        }else {
+            if(nsID == 0 || nsID == +catsStore[i]['nsID']){
+                viewCat(catsStore[i], ulSubCat);
+                if(viewCatList) viewCategory(catsStore[i], listCat);
+            }
+        }
     }
+    $('#header-left nav').append(ulHeadLeft);
+    $('#header-subcategories').append(ulSubCat);
+    if(viewCatList) $('#main').append(listCat);
 }
 
+function viewCat(catStore, ul) {
+    ul.append($('<li />')
+            .append($('<a href="#cat-' + catStore['id'] + '">' + catStore['name'] + '</a>')
+                    .click(function(){
+                        if(+catStore['nesting'] == 0)
+                            viewCatsStore(catStore['id']);
+                        else
+                            viewListProducts(catStore);
+                    })));
+}
 
+function viewCategory(catStore, nav) {
+    nav.append($('<div class="cat" />').css('background-color', '#' + catStore['color'])
+               .click(function(){
+                    viewListProducts(catStore);
+                })
+               .append($('<span />')
+                       .append('<img src="' + catStore['imgURL'] + '" alt="' + catStore['name'] + '">'))
+               .append($('<p>' + catStore['name'] + '</p>')));
+}
 
+function viewListProducts(cat) {
+    $('#main').empty();
+    viewCatsStore(cat['nsID'], 0);
+    console.dir(cat);
+    // ASIDE Category Menu
+    let ulAsideMenu = $('<ul />');
+    viewCat(cat, ulAsideMenu);
+    // Products View
+    let products = $('<div id="products" class="clear" />');
+    for(let i = 0; i < prodsStore.length; i++)
+        if(prodsStore[i]['category'] == cat['id'])
+            viewProd(prodsStore[i], products);
+    // APPEND MENU
+    $('#main')
+        .append('<h2>' + catsStore[cat['nsID'] - 1]['name'] + '</h2>')
+        // ASIDE Category Menu
+        .append($('<aside id="categories" />')
+                .append($('<nav />')
+                        .append(ulAsideMenu)))
+        // Products View
+        .append($('<div id="content" />')
+                .append(products));
+}
 
+function viewProd(product, block) {
+    block
+        .append($('<div class="product clear" />')
+                .append($('<span class="img" />')
+                        .append($('<img src="' + product['urlImg'] + '" alt="' + product['name'] + '" >').click(function(e){
+                            //
+                            e.stopPropagation();
+                        })))
+                .append($('<div class="info" />')
+                        .append($('<a href="#prod-' + product['id'] + '">' + product['name'] + '</a>')
+                                .click(function(e){
+                                    //
+                                    e.stopPropagation();
+                                }))
+                        .append('<br>')
+                        .append('<div class="price ' + (+product['newPrice'] != 0 ? 'stock' : '') + '">' + (+product['newPrice'] == 0 ? product['price'] + ' грн' : '<span>' + product['price'] + ' грн</span><br>' + product['newPrice'] + ' грн') + '</div>')
+                        .append($('<button>Купить</button>')
+                                .click(function(){
+                                    //
+                                }))));
+    
+}
 
-
-
-
-
+function viewProduct(prod) {
+    
+}
 
 /*
 let main = document.querySelector("#main");
