@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		button {
+			cursor: pointer;
+		}
+
+		form {
+			margin: 20px 0;
+		}
+
+		table .name input {
+			width: calc(90% - 20px);
+			display: inline-block;
+		}
+
+		table .name button {
+			width: 10%;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	<form action="" id="searchForm" class="container">
+		<div class="form-group row">
+	        <label for="searchField" class="col-xs-2 col-form-label">Поиск: </label>
+	        <div class="col-xs-10" style="width: 80%">
+	        	<input class="form-control" type="search" id="searchField">
+	        </div>
+		</div>
+    </form>
+    <section id="main"></section>
+	<script src="../js/objects/category.js"></script>
+	<script src="../js/objects/product.js"></script>
+	<script src="../js/objects/cart.js"></script>
+	<!-- <script src="js/storage.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script>
+		$(function() {
+		    $("#searchForm input").on("input",function(){
+		    	$("#main").empty()
+			    	.append($('<table class="table table-hover"/>')
+			    		.append($('<thead />')
+			    			.append($('<tr />')
+			    				.append('<th>#</th>')
+			    				.append('<th>Title</th>')
+			    				.append('<th>Удалить</th>')
+			    				.append('<th>Редактировать</th>')))
+			    		.append('<tbody />'));
+		    	let p = JSON.parse(localStorage.prodStore);
+		    	let value = $(this).val();
+		    	if(value != ''){
+		    		let i = 1;
+			    	p.forEach(function (prod) {
+			    		if(prod.name.indexOf(value) > -1){
+			    			$("#main table tbody")
+			    			.append($('<tr />')
+			    				.append('<th>' + i++ + '</th>')
+			    				.append('<th class="name">' + prod.name + '</th>')
+			    				.append($('<th />')
+			    					.append($('<button type="button" class="btn btn-outline-danger" >Удалить</button>')
+			    						.click(function(){
+			    							// Удалить
+			    							$(this).parent().parent().remove();
+			    						})))
+			    				.append($('<th />')
+			    					.append($('<button type="button" class="btn btn-outline-warning" >Редактировать</button>')
+			    						.click(function(){
+			    							// Редактировать
+			    							let text = $('.name', $(this).parent().parent()).text();
+			    							$('.name', $(this).parent().parent()).empty()
+			    							.append('<input type="text" class="form-control" value="' + text + '" />')
+			    							.append($('<button type="button" class="btn btn-success" ><i class="fa fa-check"></i></button>').click(function(){
+				    								// Сохранить
+				    								prod.name = $('input', $(this).parent()).val();
+				    							}));
+			    							
+			    						}))));
+			    		}
+			    	});
+			    	localStorage('prodStore', JSON.stringify(p));
+		    	}
+		    });
+		});
+    </script>
+</body>
+</html>
