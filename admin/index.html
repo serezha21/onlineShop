@@ -6,13 +6,112 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<style>
+        
+        body {
+            background-color: #f4f7fa;
+        }
+        
+        header {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        header nav {
+            width: 170px;
+            display: inline-block;
+            /*width: 100px;*/
+            text-align: center;
+            background-color: #313541;
+        }
+        
+        header nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        header nav .btn {
+            width: 100%;
+            padding: 20px;
+            white-space: inherit;
+            border-radius: 0;
+            color: #687280;
+            border-left: 2px solid #313541;
+        }
+        
+        header nav .btn:focus {
+            box-shadow: none;
+        }
+        
+        header nav .btn:hover, header nav .btnactive {
+            color: #8b98a9;
+            background-color: #373c49;
+            border-left: 2px solid #6a7583;
+            border-radius: 0;
+        }
+        
+        header nav .no-btn, header nav .no-btn:hover {
+            cursor: default;
+            border: none;
+            background-color: #47a3e3;
+            color: white;
+        }
+        
+        header nav a .fa {
+            display: block;
+            font-size: 300%;
+            margin-bottom: 10px;
+        }
+        
+        #content {
+            width: calc(100% - 170px);
+        }
+        
+        #title {
+            height: 118px;
+            background-color: white;
+        }
+        
+        #title h2 {
+            width: 400px;
+            display: inline-block;
+            margin: 35px;
+            color: #8e9aa9;
+        }
+        
+        #title .right {
+            display: inline-block;
+            width: calc(100% - 500px);
+            text-align: right;
+        }
+        
+        #title .right .text {
+            font-weight: bold;
+        }
+        
+        #title .right .logout {
+            color: red;
+            margin-left: 20px;
+        }
+        
 		button {
 			cursor: pointer;
 		}
 
-		form {
+		#search {
 			margin: 20px 0;
 		}
+        
+        #search label {
+            width: 20%;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 20px;
+        }
+        
+        #main {
+            width: 100%;
+        }
 
 		table .name input {
 			width: calc(90% - 20px);
@@ -26,25 +125,74 @@
 	</style>
 </head>
 <body>
-	<form action="" id="searchForm" class="container">
-		<div class="form-group row">
-	        <label for="searchField" class="col-xs-2 col-form-label">Поиск: </label>
-	        <div class="col-xs-10" style="width: 80%">
-	        	<input class="form-control" type="search" id="searchField">
-	        </div>
-		</div>
-    </form>
-    <section id="main"></section>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="btn btn-default no-btn"><i class="fa fa-desktop"></i>Сайт</a></li>
+                <li><a href="#" class="btn btn-default btnactive"><i class="fa fa-home"></i>Главная</a></li>
+                <li><a href="#" class="btn btn-default"><i class="fa fa-codiepie"></i>Категории</a></li>
+                <li><a href="#" class="btn btn-default"><i class="fa fa-product-hunt"></i>Товары</a></li>
+                <li><a href="#" class="btn btn-default"><i class="fa fa-file-text-o"></i>Страницы</a></li>
+                <li><a href="#" class="btn btn-default"><i class="fa fa-window-restore"></i>Модальные окна</a></li>
+                <li><a href="#" class="btn btn-default"><i class="fa fa-cogs"></i>Настройки</a></li>
+            </ul>
+        </nav>
+        <section id="content">
+           <div id="title">
+                <h2>Панель администратора</h2>
+                <div class="right">
+                    <span class="text">Администратор: Сергей</span>
+                    <a href="#logout" class="logout">Выход</a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div id="main">
+                        <form action="" id="search" class="container">
+                            <div class="form-group row">
+                                <label for="searchField" class="col-xs-2 col-form-label">Поиск: </label>
+                                <div class="col-xs-10" style="width: 80%">
+                                    <input class="form-control" type="search" id="searchField">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="main"></div>
+                    </div>
+                    <div hidden id="categories">
+                        
+                    </div>
+                    <div hidden id="products">
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
 	<script src="../js/objects/category.js"></script>
 	<script src="../js/objects/product.js"></script>
 	<script src="../js/objects/cart.js"></script>
-	<!-- <script src="js/storage.js"></script> -->
+    <!--<script src="js/storage.js"></script>-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <script>
 		$(function() {
-		    $("#searchForm input").on("input",function(){
-		    	$("#main").empty()
+            let prodStore = null;
+            
+            function ready() {
+		    	prodStore = JSON.parse(localStorage.prodStore);
+            }
+            
+            function save() {
+                localStorage.prodStore = JSON.stringify(prodStore);
+            }
+            
+            $("#search input").blur(function(){
+		    	if($(this).val() == '')
+                   $("#main .main").empty();
+            });
+            
+		    $("#search input").on("input",function(){
+		    	$("#main .main").empty()
 			    	.append($('<table class="table table-hover"/>')
 			    		.append($('<thead />')
 			    			.append($('<tr />')
@@ -53,13 +201,13 @@
 			    				.append('<th>Удалить</th>')
 			    				.append('<th>Редактировать</th>')))
 			    		.append('<tbody />'));
-		    	let p = JSON.parse(localStorage.prodStore);
+                ready();
 		    	let value = $(this).val();
 		    	if(value != ''){
 		    		let i = 1;
-			    	p.forEach(function (prod) {
+			    	prodStore.forEach(function (prod, index) {
 			    		if(prod.name.indexOf(value) > -1){
-			    			$("#main table tbody")
+			    			$("#main .main table tbody")
 			    			.append($('<tr />')
 			    				.append('<th>' + i++ + '</th>')
 			    				.append('<th class="name">' + prod.name + '</th>')
@@ -68,6 +216,8 @@
 			    						.click(function(){
 			    							// Удалить
 			    							$(this).parent().parent().remove();
+                                            prodStore.splice(index, 1);
+                                            save();
 			    						})))
 			    				.append($('<th />')
 			    					.append($('<button type="button" class="btn btn-outline-warning" >Редактировать</button>')
@@ -79,13 +229,17 @@
 			    							.append($('<button type="button" class="btn btn-success" ><i class="fa fa-check"></i></button>').click(function(){
 				    								// Сохранить
 				    								prod.name = $('input', $(this).parent()).val();
+                                                    $(this).parent().text(prod.name);
+                                                    save();
 				    							}));
 			    							
 			    						}))));
 			    		}
 			    	});
-			    	localStorage('prodStore', JSON.stringify(p));
-		    	}
+                    if(i == 1)
+                        $('#main .main').html('<h3>По запросу товаров не найдено!</h3>');
+		    	}else 
+                    $('#main .main').html('<h3>Строка пуста!</h3>');
 		    });
 		});
     </script>
